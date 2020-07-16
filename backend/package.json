@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend P6 openclassrooms",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fred-devproject/P6_DUCHER_FRED.git"
+  },
+  "author": "Ducher Fred",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fred-devproject/P6_DUCHER_FRED/issues"
+  },
+  "homepage": "https://github.com/fred-devproject/P6_DUCHER_FRED#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.24",
+    "mongoose-unique-validator": "^2.0.3",
+    "nodemon": "^2.0.4"
+  }
+}
