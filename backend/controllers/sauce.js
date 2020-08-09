@@ -1,12 +1,15 @@
-// controllers sauce
+// controller sauce
+
 const Sauce = require('../models/sauce');
+
+// Utilisation du package fs pour modificationn du système de fichiers
 const fs = require('fs');
 
-// Creer une sauce
+// Créer une sauce
 exports.createSauce = (req, res, next) => {
   const sauceObjet = JSON.parse(req.body.sauce);
   const sauce = new Sauce({
-    ...sauceObjet,
+    ...sauceObjet, // utilisation de l'opérateur spread (...) pour faire une copie de tous les élément de req.body
     imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
   });
   sauce.save()
@@ -41,7 +44,7 @@ exports.modifySauce = (req, res, next) => {
     .catch( error => res.status(404).json({ error }));
 };
 
-// suppression d'une sauce de la BDD
+// suppression d'une sauce de la base de données
 exports.deleteSauce = (req, res, next) => {
   Sauce.findOne({_id: req.params.id})
     .then(sauce => {
@@ -58,14 +61,47 @@ exports.deleteSauce = (req, res, next) => {
 // like ou dislike sauce
 exports.likeSauce = (req, res, next) => {
   const userId = req.body.userId;
-  const likes = req.body.likes;
-
+  const likes = req.body.like;
   Sauce.findOne({ _id: req.params.id })
-  .then((sauce => {
+  .then (sauce => {
     switch (likes) {
       case 1:
+        if (!sauce.usersLiked.includes(userId)) { 
+          console.log('user like')// comparaison du tableau usersliked avec l'id utilisateur pour savoir si il à deja voté
+          Sauce.updateOne({ _id: req.params.id}, { $inc: {likes: 1}, $push: {usersLiked: userId}, _id:req.params.id}) // on ajoute 1 pour les likes et ont ajoute l'id utilisateur au tableau usersLiked
+          .then(() => res.status(201).json({ message: 'Avis pris en compte !'}))
+          .catch(error => res.status(400).json({ error }));
+        }
+        break;
+
       case 0:
+        if (sauce.usersLiked.includes(userId)) {
+          console.log('user like -1')
+          // si l'utilisateur à deja liké la sauce ont retire son vote
+          Sauce.updateOne({ _id: req.params.id}, { $inc: {likes: -1}, $pull: {usersLiked: userId}, _id:req.params.id})
+          .then(() => res.status(201).json({ message: 'Avis retiré !'}))
+          .catch(error => res.status(400).json({ error }));
+        break;
+        } else if (sauce.usersDisliked.includes(userId)) {
+          console.log('user dislike -1')
+          // sinon si l'utilisateur à deja disliké la sauce ont retire son vote
+          Sauce.updateOne({ _id:req.params.id}, { $inc: {dislikes: -1}, $pull: {usersDisliked: userId}, _id:req.params.id})
+          .then(() => res.status(201).json({ message: 'Avis retiré !'}))
+          .catch(error => res.status(400).json({ error }));
+        }
+        break;
+
       case -1:
+        if (!sauce.usersLiked.includes(userId)) {
+          console.log('user dislike')
+          Sauce.updateOne({ _id: req.params.id}, { $inc: {dislikes: 1}, $push: {usersDisliked: userId}, _id:req.params.id})
+          .then(() => res.status(201).json({ message: 'Avis pris en compte !'}))
+          .catch(error => res.status(400).json({ error }));
+        }
+        break;
+
+      default: break;
     }
-  }))
+  })
+  .catch(error => res.status(400).json({ error}));
 }
