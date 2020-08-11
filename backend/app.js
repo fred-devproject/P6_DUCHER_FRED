@@ -12,7 +12,7 @@ const sauceRoutes = require('./routes/sauce');
 
 const app = express();
 
-// utilisation du module 'dotenv' pour masquer les données sensibles à l'aide de variables d'environnement
+// utilisation du module 'dotenv' pour masquer les informations de connexion à la base de données à l'aide de variables d'environnement
 require('dotenv').config();
 
 
@@ -34,7 +34,7 @@ app.use((req, res, next) =>{
     next();
 });
 
-// Utilisation de bodyparser pour transformer le corp des requête en objet json exploitable
+// Utilisation de bodyparser pour transformer le corps des requêtes en objet json exploitable.
 app.use(bodyParser.json());
 
 // Chemins d'accès des différents endpoints
