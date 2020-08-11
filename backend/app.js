@@ -2,6 +2,7 @@
 
 // import des modules npm
 const express = require('express');
+const helmet = require("helmet");
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -14,7 +15,7 @@ const app = express();
 
 // utilisation du module 'dotenv' pour masquer les informations de connexion à la base de données à l'aide de variables d'environnement
 require('dotenv').config();
-
+app.use(helmet());
 
 // Connection a la base de données
 mongoose.connect('mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASS+'@cluster0.0n1zf.mongodb.net/P6OCR?retryWrites=true&w=majority',
