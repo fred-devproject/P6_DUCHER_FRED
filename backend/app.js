@@ -15,6 +15,8 @@ const app = express();
 
 // utilisation du module 'dotenv' pour masquer les informations de connexion à la base de données à l'aide de variables d'environnement
 require('dotenv').config();
+
+// utilisation du module 'helmet' 
 app.use(helmet());
 
 // Connection a la base de données
