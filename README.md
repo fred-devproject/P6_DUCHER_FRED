@@ -9,7 +9,7 @@
 ---
 ## :clipboard: DOCUMENTS DE PRESENTATION.
 
-* Document de presentation : [Document de presentation](https://docs.google.com/document/d/1R92whnUZhVOx3VjVu339KiKVO51KhjnxRlRwCMj-yJg/edit?usp=sharing)
+* Document de presentation : [Document de presentation](https://drive.google.com/file/d/1FM5azIBOkXoHDHBHcGa9OZKDg3fbMjpG/view?usp=sharing)
 * Diagramme de fonctionnement : en cours...
 
 ---
