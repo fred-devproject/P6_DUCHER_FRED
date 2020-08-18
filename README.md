@@ -9,9 +9,8 @@
 ---
 ## :clipboard: DOCUMENTS DE PRESENTATION.
 
-* Document de presentation : [Document de presentation](https://drive.google.com/file/d/1FM5azIBOkXoHDHBHcGa9OZKDg3fbMjpG/view?usp=sharing)
-* Diagramme de fonctionnement : en cours...
-
+* Document de presentation : [Document de presentation](https://drive.google.com/file/d/1a1FdKcR7glas9QfnyyHv1sZr2s7HQHFf/view?usp=sharing)
+* Diagramme de fonctionnement : [Architecture de l'application](https://drive.google.com/file/d/1_zkSGXpHnSiy_Z0NpPSD9BYQNZ4BhZHL/view?usp=sharing)
 ---
 
 ## :gear: INITIALISATION DU PROJET
