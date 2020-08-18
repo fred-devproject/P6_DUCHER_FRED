@@ -1,3 +1,5 @@
+// middleware multer
+
 const multer = require('multer');
 
 const MIME_TYPES = {
@@ -10,8 +12,8 @@ const storage = multer.diskStorage({
     destination: (req, file, callback) => {
         callback(null, 'images')  
     },
-    filename: (req, file, callback) => {
-        
+    // le fichier est renommé afin d'être exploitable
+    filename: (req, file, callback) => {        
         const name = file.originalname.split(' ').join('_');
         const extension = MIME_TYPES[file.mimetype];  
         callback(null, name + Date.now() + '.' + extension);
