@@ -10,9 +10,9 @@ const multer = require('../middleware/multer-config');
 
 // Ajout des middlewares pour les différentes routes Auth ou multer en fonction des différentes requêtes
 router.post('/', auth, multer, sauceCtrl.createSauce);
-router.put('/:id', auth, multer, sauceCtrl.modifySauce);
-router.get('/',auth, sauceCtrl.getAllSauces);
-router.get('/:id', auth, sauceCtrl.getOneSauce);
+router.put('/:id', auth, multer, sauceCtrl.updateSauce);
+router.get('/',auth, sauceCtrl.readAllSauces);
+router.get('/:id', auth, sauceCtrl.readOneSauce);
 router.delete('/:id',  auth, multer, sauceCtrl.deleteSauce);
 router.post('/:id/like', auth, sauceCtrl.likeSauce);
 
