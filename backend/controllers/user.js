@@ -7,7 +7,7 @@ const User = require('../models/user');
 require('dotenv').config();
 
 // Fonction pour la création d'un nouvel utilisateur
-exports.signup = (req, res, next) => {
+exports.createUser = (req, res, next) => {
     // hash du mot de passe avec bcrypt
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
@@ -23,7 +23,7 @@ exports.signup = (req, res, next) => {
 };
 
 // Fonction pour la connexion d'un utilisateur existant
-exports.login = (req, res, next) => {
+exports.readUser = (req, res, next) => {
     User.findOne({ email: req.body.email})
     .then( user=> {
         if (!user){
